@@ -7,6 +7,7 @@ import (
 )
 
 type File struct {
+	name    string
 	f       *os.File
 	scanner *bufio.Scanner
 }
@@ -20,6 +21,11 @@ func (recv *File) Int() int {
 	return i
 }
 
+func (recv *File) Base2Int() int {
+	i, _ := strconv.ParseInt(recv.scanner.Text(), 2, 64)
+	return int(i)
+}
+
 func (recv *File) Text() string {
 	return recv.scanner.Text()
 }
@@ -29,13 +35,17 @@ func (recv *File) Close() {
 }
 
 func NewFile(name string) *File {
-	f, err := os.Open(name)
-	if err != nil {
-		Panic("Error opening input.txt file", err)
+	file := &File{
+		name: name,
 	}
 
-	return &File{
-		f:       f,
-		scanner: bufio.NewScanner(f),
+	var err error
+	file.f, err = os.Open(file.name)
+	if err != nil {
+		Panic("Error opening input file", err)
 	}
+
+	file.scanner = bufio.NewScanner(file.f)
+
+	return file
 }
