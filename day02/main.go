@@ -11,11 +11,34 @@ const (
 	inputFile = "day02/input.txt"
 )
 
-func main() {
-	f := utils.NewFile(inputFile)
+func part1(filename string) (x, y int) {
+	f := utils.NewFile(filename)
 	defer f.Close()
 
-	x, y, aim := 0, 0, 0
+	x, y = 0, 0
+
+	for f.Scan() {
+		l := f.Text()
+		val, _ := strconv.Atoi(strings.Fields(l)[1])
+		switch strings.Fields(l)[0] {
+		case "forward":
+			x += val
+		case "down":
+			y += val
+		case "up":
+			y -= val
+		}
+	}
+
+	return x, y
+}
+
+func part2(filename string) (x, y int) {
+	f := utils.NewFile(filename)
+	defer f.Close()
+
+	x, y = 0, 0
+	aim := 0
 
 	for f.Scan() {
 		l := f.Text()
@@ -30,7 +53,14 @@ func main() {
 			aim -= val
 		}
 	}
-	// We multiply x * aim because aim is behaving exactly as the depth in Part 1
-	fmt.Println("Part 1:", x*aim)
+
+	return x, y
+}
+
+func main() {
+	x, y := part1(inputFile)
+	fmt.Println("Part 1:", x*y)
+
+	x, y = part2(inputFile)
 	fmt.Println("Part 2:", x*y)
 }

@@ -10,8 +10,8 @@ const (
 	inputFile = "./day01/input.txt"
 )
 
-func part1() int {
-	f := utils.NewFile(inputFile)
+func part1(filename string) int {
+	f := utils.NewFile(filename)
 	defer f.Close()
 
 	c := 0
@@ -28,8 +28,8 @@ func part1() int {
 	return c
 }
 
-func part2() int {
-	f := utils.NewFile(inputFile)
+func part2(filename string) int {
+	f := utils.NewFile(filename)
 	defer f.Close()
 
 	// We compare:
@@ -54,10 +54,10 @@ func part2() int {
 }
 
 func main() {
-	c1 := part1()
+	c1 := part1(inputFile)
 	fmt.Println("Part 1:", c1)
 
-	c2 := part2()
+	c2 := part2(inputFile)
 	fmt.Println("Part 2:", c2)
 
 }

@@ -21,7 +21,7 @@ func (recv *File) Int() int {
 	return i
 }
 
-func (recv *File) Base2Int() int {
+func (recv *File) BinaryInt() int {
 	i, _ := strconv.ParseInt(recv.scanner.Text(), 2, 64)
 	return int(i)
 }
