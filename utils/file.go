@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 	"strconv"
 )
@@ -10,6 +11,12 @@ type File struct {
 	name    string
 	f       *os.File
 	scanner *bufio.Scanner
+}
+
+func (recv *File) Read() string {
+	// Error omitted because it's already checked in the constructor
+	b, _ := ioutil.ReadFile(recv.name)
+	return string(b)
 }
 
 func (recv *File) Scan() bool {
