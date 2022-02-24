@@ -7,3 +7,4 @@
 | [Day 03](./day03) | Binary Diagnostic!   |
 | [Day 04](./day04) | Giant Squid          |
 | [Day 05](./day05) | Hydrothermal Venture |
+| [Day 06](./day06) | Lanternfish          |
